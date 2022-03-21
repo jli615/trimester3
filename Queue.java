@@ -35,15 +35,17 @@ public class Queue<T> implements Iterable<T> {
 
     //FRQ part 1
     public void delete() {
+        //base case: if queue is empty
         if (this.head == null) {
             return;
         }
-
+        //second base case: if queue only has one node
         LinkedList<T> head = this.head.getNext();
         if (head == null) {
           this.head = this.tail = null;
           return;
         }
+        //regular implementation
         head.setPrevNode(null);
         this.head.setNextNode(null);
         this.head = head;
@@ -52,27 +54,34 @@ public class Queue<T> implements Iterable<T> {
     //FRQ part 2
 
     public Queue<T> merge(Queue<T> queue2) {
+        //create new queue to output solution
         Queue<T> mergeArr = new Queue<>();
-        while (this.getHead() != null && queue2.getHead() != null) {
+
+        //as long as the two queues aren't empty, continue running this
+        while (!(this.getHead() == null && queue2.getHead() == null)) {
+            //if queue1 is empty
             if (this.getHead() == null) {
                 T add = queue2.getHead().getData();
                 queue2.delete();
                 mergeArr.add(add);
             } else if (queue2.getHead() == null) {
+                //if queue 2 is empty
                 T add = this.getHead().getData();
                 this.delete();
                 mergeArr.add(add);
             } else if (this.getHead().getData().hashCode() <= queue2.getHead().getData().hashCode()) {
+                //if queue1 head < queue 2 head
                 T add = this.getHead().getData();
                 this.delete();
                 mergeArr.add(add);
             } else if (this.getHead().getData().hashCode() > queue2.getHead().getData().hashCode()){
+                //if queue2 head < queue 1 head
                 T add = queue2.getHead().getData();
                 queue2.delete();
                 mergeArr.add(add);
             }
         }
-        if (this.getHead() != null) {
+        /**if (this.getHead() != null) {
             T add = this.getHead().getData();
             this.delete();
             mergeArr.add(add);
@@ -81,6 +90,7 @@ public class Queue<T> implements Iterable<T> {
             queue2.delete();
             mergeArr.add(add);
         }
+         */
         /**for (T element: mergeArr) {
             System.out.println(element);
         }*/
@@ -208,6 +218,7 @@ class QueueManager<T> {
  * Driver Class
  * Tests queue with string, integers, and mixes of Classes and types
  */
+
 
 class QueueTester {
     public static void main(String[] args)
