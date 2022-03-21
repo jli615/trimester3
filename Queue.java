@@ -1,6 +1,5 @@
 package LinkedList2;
 import LinkedList2.LinkedList;
-import java.util.Stack;
 
 import java.util.Iterator;
 import java.util.*;
