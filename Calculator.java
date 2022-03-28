@@ -273,6 +273,16 @@ public class Calculator {
 
         System.out.println();
 
+        String userInput;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("What equation would you like to calculate?");
+
+        userInput = input.next();
+        Calculator test = new Calculator(userInput);
+        System.out.print("Result:\n" + test);
+
+
         /** working on bug
         Calculator sqrtMath = new Calculator("sqrt9");
         System.out.println("Square Root Math\n" + sqrtMath);
